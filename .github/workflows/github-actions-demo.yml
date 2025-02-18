@@ -30,7 +30,7 @@ jobs:
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.3
+          php-version: 8.2
           extensions: mbstring, intl, pdo, pdo_mysql
           tools: composer, phpstan, cs2pr
 
@@ -45,8 +45,11 @@ jobs:
       # 📦 INSTALL DEPENDENCIES
       # ----------------------------------
 
+      - name: Diagnose Composer Issues
+        run: composer diagnose
+
       - name: Install Composer Dependencies
-        run: composer install --no-progress --prefer-dist
+        run: composer install --no-progress --prefer-dist --verbose
 
       - name: Install Bun Dependencies
         run: bun install --no-progress
