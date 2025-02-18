@@ -56,7 +56,7 @@ fix-assets:
 
 # Twig Fixer
 fix-twig:
-    vendor/bin/twig-cs-fixer lint templates/
+    ./tools/twig-cs-fixer/vendor/bin/twig-cs-fixer
 
 # -----------------
 # GLOBAL FIX (Calls all linters)
