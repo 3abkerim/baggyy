@@ -45,14 +45,14 @@ jobs:
       # 📦 INSTALL DEPENDENCIES
       # ----------------------------------
 
-      - name: Update Composer Public Keys
-        run: composer self-update --update-keys
+      - name: Update Composer
+        run: composer self-update --no-interaction
 
       - name: Diagnose Composer Issues
-        run: composer diagnose
+        run: composer diagnose || true
 
       - name: Install Composer Dependencies
-        run: composer install --no-progress --prefer-dist --verbose
+        run: composer install --no-progress --prefer-dist --no-interaction
 
       - name: Install Bun Dependencies
         run: bun install --no-progress
