@@ -67,9 +67,9 @@ jobs:
       # ----------------------------------
       # 🛠 RUN DATABASE MIGRATIONS
       # ----------------------------------
-
-      - name: Run Database Migrations
-        run: php bin/console doctrine:migrations:migrate --no-interaction
+#
+#      - name: Run Database Migrations
+#        run: php bin/console doctrine:migrations:migrate --no-interaction
 
       # ----------------------------------
       # ✅ RUN TESTS & LINTERS
