@@ -1,5 +1,7 @@
 {
-    "dependencies": {},
+    "dependencies": {
+        "core-js": "^3.40.0"
+    },
     "devDependencies": {
         "@hotwired/stimulus": "^3.0.0",
         "@hotwired/turbo": "^7.1.1 || ^8.0",
