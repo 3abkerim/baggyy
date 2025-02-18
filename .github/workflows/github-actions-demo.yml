@@ -85,7 +85,7 @@ jobs:
         run: vendor/bin/php-cs-fixer fix --dry-run --diff
 
       - name: Run Twig CS Fixer (Twig Code Style)
-        run: vendor/bin/twig-cs-fixer lint templates/
+        run:  php vendor/friendsoftwig/twigcs/bin/twigcs templates/
 
       - name: Run Prettier (JS, CSS, SCSS)
         run: bun run format:assets
