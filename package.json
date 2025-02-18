@@ -1,9 +1,16 @@
 {
     "dependencies": {},
     "devDependencies": {
-        "prettier": "^3.5.1"
+        "@symfony/webpack-encore": "^5.0.1",
+        "prettier": "^3.5.1",
+        "webpack": "^5.98.0",
+        "webpack-cli": "^6.0.1",
+        "webpack-dev-server": "^5.2.0"
     },
     "scripts": {
+        "dev": "bun run encore dev",
+        "watch": "bun run encore dev --watch",
+        "build": "bun run encore production",
         "format:assets": "bunx prettier --write assets/**/*.{js,css,scss}",
         "format:js": "bunx prettier --write assets/**/*.{js}"
     }
