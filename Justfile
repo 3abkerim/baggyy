@@ -54,6 +54,10 @@ fix-rector:
 fix-assets:
     bun run format:assets
 
+# Twig Fixer
+fix-twig:
+    vendor/bin/twig-cs-fixer lint templates/
+
 # -----------------
 # GLOBAL FIX (Calls all linters)
 # -----------------
@@ -61,6 +65,7 @@ fix:
     just fix-php-cs
     just fix-phpstan
     just fix-rector
+    just fix-twig
     just fix-assets
     just test
 
