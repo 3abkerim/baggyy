@@ -1,0 +1,10 @@
+{
+    "dependencies": {},
+    "devDependencies": {
+        "prettier": "^3.5.1"
+    },
+    "scripts": {
+        "format:assets": "bunx prettier --write assets/**/*.{js,css,scss}",
+        "format:js": "bunx prettier --write assets/**/*.{js}"
+    }
+}
