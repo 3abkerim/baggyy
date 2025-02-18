@@ -69,3 +69,8 @@ Thumbs.db
 /.eslintcache
 /.phpunit.result.cache
 /tests/.phpunit/ # PHPUnit temp files
+
+###> friendsofphp/php-cs-fixer ###
+/.php-cs-fixer.php
+/.php-cs-fixer.cache
+###< friendsofphp/php-cs-fixer ###
