@@ -1,0 +1,92 @@
+name: Symfony CI/CD with Bun
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  Symfony-CI:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Display GitHub Context
+        run: |
+          echo "🎉 Triggered by: ${{ github.event_name }}"
+          echo "🐧 Running on: ${{ runner.os }}"
+          echo "🔎 Branch: ${{ github.ref }} | Repo: ${{ github.repository }}"
+          echo "🍏 Job status: ${{ job.status }}"
+
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      # ----------------------------------
+      # 🛠 SET UP ENVIRONMENT
+      # ----------------------------------
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.3
+          extensions: mbstring, intl, pdo, pdo_mysql
+          tools: composer, phpstan, cs2pr
+
+      - name: Set up Bun
+        run: curl -fsSL https://bun.sh/install | bash
+
+      # Add Bun to PATH
+      - name: Add Bun to Path
+        run: echo "$HOME/.bun/bin" >> $GITHUB_PATH
+
+      # ----------------------------------
+      # 📦 INSTALL DEPENDENCIES
+      # ----------------------------------
+
+      - name: Install Composer Dependencies
+        run: composer install --no-progress --prefer-dist
+
+      - name: Install Bun Dependencies
+        run: bun install --no-progress
+
+      # ----------------------------------
+      # ⚙️ BUILD ASSETS (Webpack Encore)
+      # ----------------------------------
+
+      - name: Build Webpack Encore Assets
+        run: just build
+
+      # ----------------------------------
+      # 🛠 RUN DATABASE MIGRATIONS
+      # ----------------------------------
+
+      - name: Run Database Migrations
+        run: just migrate-cicd
+
+      # ----------------------------------
+      # ✅ RUN TESTS & LINTERS
+      # ----------------------------------
+
+      - name: Run PHPUnit Tests
+        run: vendor/bin/phpunit
+
+      - name: Run PHPStan (Static Analysis)
+        run: vendor/bin/phpstan analyse --memory-limit=512M
+
+      - name: Run PHP-CS-Fixer (Code Style)
+        run: vendor/bin/php-cs-fixer fix --dry-run --diff
+
+      - name: Run Twig CS Fixer (Twig Code Style)
+        run: vendor/bin/twig-cs-fixer lint templates/
+
+      - name: Run Prettier (JS, CSS, SCSS)
+        run: just fix-assets
+
+      # ----------------------------------
+      # 🔍 CHECK FINAL FILE STATE
+      # ----------------------------------
+
+      - name: List files in workspace
+        run: ls -lah ${{ github.workspace }}
