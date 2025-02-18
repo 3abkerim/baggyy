@@ -23,7 +23,6 @@ restart:
 # Run tests
 test:
     vendor/bin/phpunit
-    bun run format
 
 # Clear cache
 cc:
@@ -56,7 +55,7 @@ fix-assets:
 
 # Twig Fixer
 fix-twig:
-    ./tools/twig-cs-fixer/vendor/bin/twig-cs-fixer
+    php vendor/friendsoftwig/twigcs/bin/twigcs templates/
 
 # -----------------
 # GLOBAL FIX (Calls all linters)
