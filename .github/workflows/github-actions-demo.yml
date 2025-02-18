@@ -45,6 +45,9 @@ jobs:
       # 📦 INSTALL DEPENDENCIES
       # ----------------------------------
 
+      - name: Update Composer Public Keys
+        run: composer self-update --update-keys
+
       - name: Diagnose Composer Issues
         run: composer diagnose
 
