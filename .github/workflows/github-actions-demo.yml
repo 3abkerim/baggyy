@@ -62,14 +62,14 @@ jobs:
       # ----------------------------------
 
       - name: Build Webpack Encore Assets
-        run: just build
+        run: bun run build
 
       # ----------------------------------
       # 🛠 RUN DATABASE MIGRATIONS
       # ----------------------------------
 
       - name: Run Database Migrations
-        run: just migrate-cicd
+        run: php bin/console doctrine:migrations:migrate --no-interaction
 
       # ----------------------------------
       # ✅ RUN TESTS & LINTERS
@@ -88,7 +88,7 @@ jobs:
         run: vendor/bin/twig-cs-fixer lint templates/
 
       - name: Run Prettier (JS, CSS, SCSS)
-        run: just fix-assets
+        run: bun run format:assets
 
       # ----------------------------------
       # 🔍 CHECK FINAL FILE STATE
