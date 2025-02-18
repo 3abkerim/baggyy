@@ -1,5 +1,8 @@
 
 ###> symfony/framework-bundle ###
+/.env
+/.env.dev
+/.env.test
 /.env.local
 /.env.local.php
 /.env.*.local
@@ -23,3 +26,46 @@
 /public/assets/
 /assets/vendor/
 ###< symfony/asset-mapper ###
+
+###> chatgpt recommondations ###
+
+# Composer dependencies
+/vendor/
+/composer.lock
+
+# Symfony logs & cache
+/var/cache/
+/var/log/
+
+# Security-related files
+/config/jwt/private.pem
+/config/jwt/public.pem
+/config/jwt/.gitignore
+
+# IDE/Editor settings
+/.idea/
+/*.iml
+/nbproject/
+/*.swp
+/.project
+/.buildpath
+/.metadata
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Symfony CLI binary
+/.symfony/
+
+# Miscellaneous
+/public/build/  # If using Webpack Encore
+/node_modules/  # If you use npm/yarn for assets
+/yarn.lock
+/package-lock.json
+/pnpm-lock.yaml
+/.pnp/
+.pnp.js
+/.eslintcache
+/.phpunit.result.cache
+/tests/.phpunit/ # PHPUnit temp files
