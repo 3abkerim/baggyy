@@ -98,6 +98,7 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.69",
+        "friendsoftwig/twigcs": "^6.5",
         "phpstan/phpstan": "^2.1",
         "phpunit/phpunit": "^9.5",
         "rector/rector": "^2.0",
