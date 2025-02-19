@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
-body {
-    background-color: skyblue;
+@font-face {
+    font-family: 'myfont';
+    src: url('../fonts/Radeil3d.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
 }
