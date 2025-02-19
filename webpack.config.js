@@ -14,7 +14,11 @@ Encore
     // only needed for CDN's or subdirectory deploy
     //.setManifestKeyPrefix('build/')
 
-    .enablePostCssLoader()
+    .enablePostCssLoader(options => {
+        options.postcssOptions = {
+            config: './postcss.config.js',
+        };
+    })
 
     .copyFiles({
         from: './assets/fonts',

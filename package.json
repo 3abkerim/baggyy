@@ -2,11 +2,12 @@
     "name": "baggyy",
     "version": "1.0.0",
     "dependencies": {
-        "core-js": "^3.40.0",
         "@tailwindcss/postcss": "^4.0.7",
-        "tailwindcss": "^4.0.7",
+        "core-js": "^3.40.0",
         "postcss": "^8.5.2",
-        "postcss-loader": "^8.1.1"
+        "postcss-import": "^16.1.0",
+        "postcss-loader": "^8.1.1",
+        "tailwindcss": "^4.0.7"
     },
     "devDependencies": {
         "@hotwired/stimulus": "^3.0.0",
