@@ -73,6 +73,7 @@ Encore
 
     // uncomment if you're having problems with a jQuery plugin
     //.autoProvidejQuery()
-;
+
+    .addEntry('navbar', './assets/js/navbar/index.js');
 
 module.exports = Encore.getWebpackConfig();
