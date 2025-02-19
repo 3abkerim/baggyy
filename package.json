@@ -1,4 +1,6 @@
 {
+    "name": "baggyy",
+    "version": "1.0.0",
     "dependencies": {
         "core-js": "^3.40.0",
         "@tailwindcss/postcss": "^4.0.7",
