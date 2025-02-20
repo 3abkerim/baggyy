@@ -12,8 +12,9 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-    <body>
+    <body class="pt-32">
         {{ include('topbar/_navbar.html.twig') }}
         {% block body %}{% endblock %}
+        {{ encore_entry_script_tags('navbar') }}
     </body>
 </html>
