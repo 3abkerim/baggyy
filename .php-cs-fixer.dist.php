@@ -5,6 +5,7 @@ declare(strict_types=1);
 $finder = PhpCsFixer\Finder::create()
     ->in(__DIR__)
     ->exclude([
+        'config',
         'mld',
         'ogi',
         'sql',
@@ -22,6 +23,7 @@ $finder = PhpCsFixer\Finder::create()
     ->notPath([
         'bin/console',
         'public/index.php',
+        'tests/bootstrap.php'
     ]);
 
 return (new PhpCsFixer\Config())
