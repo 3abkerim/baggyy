@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -11,7 +13,6 @@ final class LoginController extends AbstractController
     #[Route('/login', name: 'app_login')]
     public function index(): Response
     {
-
         return $this->render('login/index.html.twig', [
             'controller_name' => 'LoginController',
         ]);

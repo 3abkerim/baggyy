@@ -1,18 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use DateTimeInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
-class User implements \Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface
+class User implements PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    /** @phpstan-ignore-next-line */
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
@@ -28,13 +33,13 @@ class User implements \Symfony\Component\Security\Core\User\PasswordAuthenticate
     private ?string $password = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $birthDate = null;
+    private ?DateTimeInterface $birthDate = null;
 
     #[ORM\Column(length: 15, nullable: true)]
     private ?string $phoneNumber = null;
 
-    #[ORM\Column(type: 'boolean', options: ['default' => false])]
-    private ?bool $verified = false;
+    #[ORM\Column(type: Types::BOOLEAN, options: ['default' => false])]
+    private bool $verified = false;
 
     public function getId(): ?int
     {
@@ -89,12 +94,12 @@ class User implements \Symfony\Component\Security\Core\User\PasswordAuthenticate
         return $this;
     }
 
-    public function getBirthDate(): ?\DateTimeInterface
+    public function getBirthDate(): ?DateTimeInterface
     {
         return $this->birthDate;
     }
 
-    public function setBirthDate(\DateTimeInterface $birthDate): static
+    public function setBirthDate(DateTimeInterface $birthDate): static
     {
         $this->birthDate = $birthDate;
 

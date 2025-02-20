@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
 
 use App\Entity\User;
@@ -16,8 +18,7 @@ final class RegistrationController extends AbstractController
     public function __construct(
         private readonly EntityManagerInterface $entityManager,
         private readonly UserPasswordHasherInterface $userPasswordHasher,
-    ) {
-    }
+    ) {}
 
     #[Route('/registration', name: 'app_registration')]
     public function create(Request $request): Response
