@@ -4,8 +4,8 @@ install:
     bun install
 
 # Run Symfony server
-serve:
-    symfony serve -d
+run:
+    symfony serve
 
 # Run Symfony server on all devices
 serve-all:
@@ -76,10 +76,10 @@ migrate-cicd:
     bin/console doctrine:migrations:migrate --no-interaction
 
 migrations:
-    bin/console doctrine:migrations
+    php bin/console doctrine:migrations:diff
 
 migrate:
-    bin/console doctrine:migrations:migrate
+    php bin/console doctrine:migrations:migrate
 
 bdd-dump:
     bin/console doctrine:schema:validate -vvv
