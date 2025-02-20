@@ -39,7 +39,7 @@ cleanup:
 
 # PHP Code Style Fixer
 fix-php-cs:
-    vendor/bin/php-cs-fixer fix src/
+    vendor/bin/php-cs-fixer fix
 
 # PHPStan (Static Analysis)
 fix-phpstan:
