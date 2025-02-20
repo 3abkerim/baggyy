@@ -20,7 +20,7 @@ final class RegistrationController extends AbstractController
         private readonly UserPasswordHasherInterface $userPasswordHasher,
     ) {}
 
-    #[Route('/registration', name: 'app_registration')]
+    #[Route('/register', name: 'register')]
     public function create(Request $request): Response
     {
         $user = new User();
@@ -28,6 +28,10 @@ final class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if (null === $user->getPassword() || '' === trim($user->getPassword())) {
+                return new Response('Password cannot be empty', Response::HTTP_BAD_REQUEST);
+            }
+
             $hashedPassword = $this->userPasswordHasher->hashPassword($user, $user->getPassword());
             $user->setPassword($hashedPassword);
 
