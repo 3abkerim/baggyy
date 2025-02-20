@@ -31,6 +31,7 @@ class RegistrationType extends AbstractType
                 'type' => PasswordType::class,
                 'first_options' => ['label' => 'Password'],
                 'second_options' => ['label' => 'Confirm Password'],
+                'mapped' => true,
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Create Account',
