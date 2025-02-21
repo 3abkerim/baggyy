@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 final class RegistrationController extends AbstractController
 {
@@ -23,7 +24,7 @@ final class RegistrationController extends AbstractController
     #[Route('/register', name: 'register')]
     public function create(Request $request): Response
     {
-        if ($this->getUser()) {
+        if ($this->getUser() instanceof UserInterface) {
             return $this->redirectToRoute('userspace');
         }
 

@@ -33,9 +33,9 @@ class AppCustomAuthenticator extends AbstractLoginFormAuthenticator
 
     public function authenticate(Request $request): Passport
     {
-        $email = $request->request->get('email');
-        $password = $request->request->get('password');
-        $csrfToken = $request->request->get('_csrf_token');
+        $email = (string) $request->request->get('email', '');
+        $password = (string) $request->request->get('password', '');
+        $csrfToken = (string) $request->request->get('_csrf_token', '');
         $storedCsrfToken = $request->getSession()->get('_csrf/authenticate');
 
         $this->logger->info('Login Attempt: ', [
@@ -62,11 +62,11 @@ class AppCustomAuthenticator extends AbstractLoginFormAuthenticator
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
-        if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
+        if (($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) !== null && ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) !== '' && ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) !== '0') {
             return new RedirectResponse($targetPath);
         }
 
-         return new RedirectResponse($this->urlGenerator->generate('userspace'));
+        return new RedirectResponse($this->urlGenerator->generate('userspace'));
     }
 
     protected function getLoginUrl(Request $request): string

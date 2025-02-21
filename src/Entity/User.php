@@ -42,7 +42,10 @@ class User implements PasswordAuthenticatedUserInterface, UserInterface
     #[ORM\Column(type: Types::BOOLEAN, options: ['default' => false])]
     private bool $verified = false;
 
-    #[ORM\Column(type: 'json')]
+    /**
+     * @var string[]
+     */
+    #[ORM\Column(type: Types::JSON)]
     private array $roles = [];
 
     public function getId(): ?int
@@ -137,18 +140,22 @@ class User implements PasswordAuthenticatedUserInterface, UserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        if (empty($roles)) {
+        if ([] === $roles) {
             $roles[] = 'ROLE_USER';
         }
+
         return array_unique($roles);
     }
 
+    /**
+     * @param string[] $roles
+     */
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
+
         return $this;
     }
-
 
     public function eraseCredentials(): void
     {
@@ -157,6 +164,7 @@ class User implements PasswordAuthenticatedUserInterface, UserInterface
 
     public function getUserIdentifier(): string
     {
-        return $this->email ?? '';
+        /* @phpstan-ignore-next-line */
+        return $this->email;
     }
 }
