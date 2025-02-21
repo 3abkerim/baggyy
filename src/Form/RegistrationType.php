@@ -34,7 +34,7 @@ class RegistrationType extends AbstractType
                 'mapped' => true,
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Create Account',
+                'label' => 'Create',
             ])
         ;
     }

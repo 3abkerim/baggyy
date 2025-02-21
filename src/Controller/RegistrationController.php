@@ -23,6 +23,10 @@ final class RegistrationController extends AbstractController
     #[Route('/register', name: 'register')]
     public function create(Request $request): Response
     {
+        if ($this->getUser()) {
+            return $this->redirectToRoute('userspace');
+        }
+
         $user = new User();
         $form = $this->createForm(RegistrationType::class, $user);
         $form->handleRequest($request);
@@ -34,6 +38,7 @@ final class RegistrationController extends AbstractController
 
             $hashedPassword = $this->userPasswordHasher->hashPassword($user, $user->getPassword());
             $user->setPassword($hashedPassword);
+            $user->setRoles(['ROLE_USER']);
 
             $this->entityManager->persist($user);
             $this->entityManager->flush();
