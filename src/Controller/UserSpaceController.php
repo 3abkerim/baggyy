@@ -8,13 +8,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-final class LoginController extends AbstractController
+final class UserSpaceController extends AbstractController
 {
-    #[Route('/login', name: 'app_login')]
+    #[Route('/userspace', name: 'userspace')]
     public function index(): Response
     {
-        return $this->render('login/index.html.twig', [
-            'controller_name' => 'LoginController',
+        return $this->render('user_space/index.html.twig', [
+            'controller_name' => 'UserSpaceController',
         ]);
     }
 }
