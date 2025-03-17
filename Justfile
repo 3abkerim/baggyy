@@ -27,6 +27,7 @@ test:
 # Clear cache
 cc:
     bin/console cache:clear
+    composer clear-cache
 
 # Stop dev server processes & remove generated directories when switching branch
 cleanup:
@@ -75,7 +76,7 @@ fix:
 migrate-cicd:
     bin/console doctrine:migrations:migrate --no-interaction
 
-migrations:
+migration:
     php bin/console doctrine:migrations:diff
 
 migrate:
