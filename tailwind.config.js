@@ -1,10 +1,10 @@
-/** @type {import('tailwindcss').Config} */
-export default {
-    content: ['./templates/**/*.html.twig', './assets/**/*.js'],
+module.exports = {
+    content: ['./assets/**/*.{js,jsx}', './templates/**/*.html.twig', './src/**/*.php'],
+    darkMode: 'media', // Enable dark mode via class (optional)
     theme: {
         extend: {
             fontFamily: {
-                myfont: ["'myfont'", 'sans-serif'],
+                myfont: ["'Papyrus'", 'sans-serif'], // Ensure correct font declaration
             },
             colors: {
                 primary: '#1E40AF',
