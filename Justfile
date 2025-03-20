@@ -107,3 +107,9 @@ watch:
 
 bunwatch:
     bun --watch run encore dev
+
+dev:
+    bun run encore dev
+
+build:
+    bun run encore production
