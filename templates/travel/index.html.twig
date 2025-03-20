@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Baggyy : Travel{% endblock %}
+
+{% block body %}
+    <div class="container mx-auto p-4">
+        <div class="grid grid-cols-2 gap-4">
+            <div>
+                <form class="container max-w-sm mx-auto mt-6">
+                    <div>
+                        <label for="from-country-city-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">From:</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 start-0 top-0 flex items-center ps-3.5 pointer-events-none">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <input type="text" id="from-country-city-input" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Choose City or Country" required />
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <label for="to-country-city-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">To:</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 start-0 top-0 flex items-center ps-3.5 pointer-events-none">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <input type="text" id="to-country-city-input" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Choose City or Country" required />
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <label for="departure-date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Departure date:</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 start-0 top-0 flex items-center ps-3.5 pointer-events-none">
+                                <i class="fa-solid fa-calendar"></i>
+                            </div>
+                            <input id="departure-date" type="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date" required>
+                        </div>
+                    </div>
+                    <div class="mt-3 invisible h-0 js-return-date-div">
+                        <label for="return-date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Return date:</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 start-0 top-0 flex items-center ps-3.5 pointer-events-none">
+                                <i class="fa-solid fa-calendar"></i>
+                            </div>
+                            <input id="return-date" type="date" class="js-return-date-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date">
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-end mt-3 mb-4">
+                        <input id="checkbox-return-trip" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="checkbox-return-trip" class="ms-2 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Add return date</label>
+                    </div>
+                    <div class="flex justify-center">
+                        <button type="submit" class="border-2 border-black text-white bg-primary hover:bg-primaryHover focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add trip</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="text-center flex justify-center items-center flex-col">
+                <h1 class="font-phudu-bold text-3xl">Make Money while you are travelling</h1>
+                <p class="mt-4 text-2xl">Optimize your trips by transporting parcels for people in need. Connect with senders, choose deliveries that match your route, and make extra income effortlessly.</p>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('travel') }}
+{% endblock %}
