@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @font-face {
     font-family: 'myfont';
@@ -37,7 +37,7 @@ nav {
 }
 
 @theme {
-    --font-phudu-bold: "phudu-bold", sans-serif;
-    --color-primary: #3B82F6;
-    --color-primary-hover: #1E40AF;
+    --font-phudu-bold: 'phudu-bold', sans-serif;
+    --color-primary: #3b82f6;
+    --color-primary-hover: #1e40af;
 }
