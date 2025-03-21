@@ -6,6 +6,8 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use DateTimeInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -51,6 +53,17 @@ class User implements PasswordAuthenticatedUserInterface, UserInterface
      */
     #[ORM\Column(type: Types::JSON)]
     private array $roles = [];
+
+    /**
+     * @var Collection<int, Travel>
+     */
+    #[ORM\OneToMany(targetEntity: Travel::class, mappedBy: 'idUser')]
+    private Collection $travel;
+
+    public function __construct()
+    {
+        $this->travel = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -170,5 +183,35 @@ class User implements PasswordAuthenticatedUserInterface, UserInterface
     {
         /* @phpstan-ignore-next-line */
         return $this->email;
+    }
+
+    /**
+     * @return Collection<int, Travel>
+     */
+    public function getTravel(): Collection
+    {
+        return $this->travel;
+    }
+
+    public function addTravel(Travel $travel): static
+    {
+        if (!$this->travel->contains($travel)) {
+            $this->travel->add($travel);
+            $travel->setIdUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTravel(Travel $travel): static
+    {
+        if ($this->travel->removeElement($travel)) {
+            // set the owning side to null (unless already changed)
+            if ($travel->getIdUser() === $this) {
+                $travel->setIdUser(null);
+            }
+        }
+
+        return $this;
     }
 }
