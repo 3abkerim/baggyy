@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Repository\CityRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\UX\Turbo\Attribute\Broadcast;
 
@@ -17,6 +15,7 @@ class City
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    /** @phpstan-ignore-next-line */
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
@@ -54,5 +53,4 @@ class City
 
         return $this;
     }
-
 }

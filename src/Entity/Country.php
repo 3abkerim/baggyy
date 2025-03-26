@@ -17,6 +17,7 @@ class Country
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    /** @phpstan-ignore-next-line */
     private ?int $id = null;
 
     #[ORM\Column(length: 255, unique: true)]
@@ -70,11 +71,9 @@ class Country
 
     public function removeCity(City $city): static
     {
-        if ($this->cities->removeElement($city)) {
-            // set the owning side to null (unless already changed)
-            if ($city->getCountry() === $this) {
-                $city->setCountry(null);
-            }
+        // set the owning side to null (unless already changed)
+        if ($this->cities->removeElement($city) && $city->getCountry() === $this) {
+            $city->setCountry(null);
         }
 
         return $this;

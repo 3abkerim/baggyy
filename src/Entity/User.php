@@ -205,11 +205,9 @@ class User implements PasswordAuthenticatedUserInterface, UserInterface
 
     public function removeTravel(Travel $travel): static
     {
-        if ($this->travel->removeElement($travel)) {
-            // set the owning side to null (unless already changed)
-            if ($travel->getIdUser() === $this) {
-                $travel->setIdUser(null);
-            }
+        // set the owning side to null (unless already changed)
+        if ($this->travel->removeElement($travel) && $travel->getIdUser() === $this) {
+            $travel->setIdUser(null);
         }
 
         return $this;

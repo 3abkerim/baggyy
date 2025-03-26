@@ -8,7 +8,7 @@
             <div>
                 {{ form_start(form, {attr: {class: 'max-w-xl mt-6 mx-auto'}}) }}
                     <div>
-                        {{ form_label(form.departure, null, { label_attr: { class: 'mb-1' } }) }}
+                        {{ form_label(form.departure) }}
                         <div class="relative">
                             <div class="absolute inset-y-0 start-0 top-0 flex items-center ps-3.5 pointer-events-none">
                                 <i class="fa-solid fa-location-dot text-gray-500"></i>
@@ -20,7 +20,7 @@
                     </div>
 
                     <div class="mt-3">
-                        {{ form_label(form.destination, null, { label_attr: { class: 'mb-1' } }) }}
+                        {{ form_label(form.destination) }}
                         <div class="relative">
                             <div class="absolute inset-y-0 start-0 top-0 flex items-center ps-3.5 pointer-events-none">
                                 <i class="fa-solid fa-location-dot text-gray-500"></i>
@@ -32,7 +32,7 @@
                     </div>
 
                     <div class="mt-3">
-                        {{ form_label(form.tripDate, null, { label_attr: { class: 'mb-1' } }) }}
+                        {{ form_label(form.tripDate) }}
                         <div class="relative">
                             <div class="absolute inset-y-0 start-0 top-0 flex items-center ps-3.5 pointer-events-none">
                                 <i class="fa-solid fa-location-dot text-gray-500"></i>
@@ -43,7 +43,7 @@
                     </div>
 
                     <div class="mt-3 invisible h-0 js-return-date-div">
-                        {{ form_label(form.returnDate, null, { label_attr: { class: 'mb-1' } }) }}
+                        {{ form_label(form.returnDate) }}
                         <div class="relative">
                             <div class="absolute inset-y-0 start-0 top-0 flex items-center ps-3.5 pointer-events-none">
                                 <i class="fa-solid fa-location-dot text-gray-500"></i>
@@ -71,52 +71,4 @@
 
 {% block javascripts %}
     {{ encore_entry_script_tags('travel') }}
-    <script>
-        // function debounce(func, delay) {
-        //     let timeout;
-        //     return function () {
-        //         const context = this, args = arguments;
-        //         clearTimeout(timeout);
-        //         timeout = setTimeout(() => func.apply(context, args), delay);
-        //     };
-        // }
-        //
-        // async function fetchLocations(query, dataListId) {
-        //     if (query.length < 2) return;
-        //
-        //     try {
-        //         let response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${query}&addressdetails=1`);
-        //         if (!response.ok) throw new Error("Failed to fetch data");
-        //
-        //         let results = await response.json();
-        //         let dataList = document.getElementById(dataListId);
-        //         dataList.innerHTML = "";
-        //
-        //         let uniqueResults = new Set();
-        //
-        //         results.forEach((place) => {
-        //             let displayName = place.display_name;
-        //
-        //             if (!uniqueResults.has(displayName)) {
-        //                 uniqueResults.add(displayName);
-        //                 let option = document.createElement("option");
-        //                 option.value = displayName;
-        //                 dataList.appendChild(option);
-        //             }
-        //         });
-        //
-        //     } catch (error) {
-        //         console.error("Error fetching location data:", error);
-        //     }
-        // }
-        //
-        // document.addEventListener("DOMContentLoaded", function () {
-        //     let fromInput = document.getElementById("from-country-city-input");
-        //     let toInput = document.getElementById("to-country-city-input");
-        //
-        //     fromInput.addEventListener("input", debounce(() => fetchLocations(fromInput.value, "from-suggestions"), 300));
-        //     toInput.addEventListener("input", debounce(() => fetchLocations(toInput.value, "to-suggestions"), 300));
-        // });
-    </script>
-
 {% endblock %}
