@@ -3,6 +3,7 @@
     "version": "1.0.0",
     "dependencies": {
         "core-js": "^3.40.0",
+        "flatpickr": "^4.6.13",
         "postcss-import": "^16.1.0",
         "postcss-loader": "^8.1.1"
     },

@@ -9,9 +9,12 @@
         {% endblock %}
 
         <script src="https://kit.fontawesome.com/0f0b5058e5.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWdSjFw34553EpW0S2nGR4L_sasC-VozM&libraries=places"></script>
     </head>
     <body class="pt-32">
         {{ include('topbar/_navbar.html.twig') }}

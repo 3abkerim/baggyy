@@ -2,6 +2,8 @@
 install:
     composer install
     bun install
+    just migrate-cicd
+    just dev
 
 # Run Symfony server
 run:
