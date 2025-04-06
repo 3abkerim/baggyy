@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Factory;
 
 use App\Entity\Travel;
+use DateTime;
 
 class TravelFactory
 {
@@ -10,8 +13,8 @@ class TravelFactory
     {
         [$start, $end] = explode(' to ', $data['tripDate']);
 
-        $departureDate = \DateTime::createFromFormat('d-m-Y', trim($start));
-        $returnDate = isset($end) ? \DateTime::createFromFormat('d-m-Y', trim($end)) : null;
+        $departureDate = DateTime::createFromFormat('d-m-Y', trim($start));
+        $returnDate = isset($end) ? DateTime::createFromFormat('d-m-Y', trim($end)) : null;
 
         $departure = $this->locationResolver->resolve($data['departure']);
         $destination = $this->locationResolver->resolve($data['destination']);
