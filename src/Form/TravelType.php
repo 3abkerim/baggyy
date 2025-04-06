@@ -6,8 +6,6 @@ namespace App\Form;
 
 use App\Entity\Travel;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -23,8 +21,8 @@ class TravelType extends AbstractType
                 'mapped' => false,
                 'label_attr' => ['mb-1'],
                 'attr' => [
-                    'class' => 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5',
-                    'placeholder' => 'Choose City or Country',
+                    'class' => 'city-autocomplete bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5',
+                    'placeholder' => 'Choose City',
                     'id' => 'from-country-city-input',
                     'list' => 'from-suggestions',
                     'required' => true,
@@ -35,42 +33,20 @@ class TravelType extends AbstractType
                 'mapped' => false,
                 'label_attr' => ['mb-1'],
                 'attr' => [
-                    'class' => 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500',
-                    'placeholder' => 'Choose City or Country',
+                    'class' => 'city-autocomplete bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5',
+                    'placeholder' => 'Choose City',
                     'id' => 'to-country-city-input',
                     'list' => 'to-suggestions',
                     'required' => true,
                 ],
             ])
-            ->add('tripDate', DateType::class, [
-                'widget' => 'single_text',
-                'label' => 'Departure Date',
+            ->add('tripDate', TextType::class, [
+                'mapped' => false,
+                'label' => 'Trip date(s)',
                 'label_attr' => ['mb-1'],
                 'attr' => [
                     'required' => true,
-                    'class' => 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500',
-                ],
-            ])
-            ->add('returnTrip', CheckboxType::class, [
-                'label' => 'Add return date',
-                'required' => false,
-                'mapped' => false,
-                'attr' => [
-                    'id' => 'checkbox-return-trip',
-                ],
-                'row_attr' => [
-                    'class' => 'flex items-center gap-2',
-                ],
-            ])
-            ->add('returnDate', DateType::class, [
-                'widget' => 'single_text',
-                'label' => 'Return Date',
-                'required' => false,
-                'label_attr' => ['mb-1'],
-                'mapped' => false,
-                'attr' => [
-                    'id' => 'return-date',
-                    'class' => 'invisible h-0 js-return-date-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500',
+                    'class' => 'js-flatpickr-date bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5',
                 ],
             ])
             ->add('save', SubmitType::class, [
