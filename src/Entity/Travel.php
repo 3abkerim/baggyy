@@ -33,12 +33,6 @@ class Travel
     #[ORM\ManyToOne]
     private ?City $toCity = null;
 
-    #[ORM\ManyToOne]
-    private ?Country $fromCountry = null;
-
-    #[ORM\ManyToOne]
-    private ?Country $toCountry = null;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -88,30 +82,6 @@ class Travel
     public function setToCity(?City $toCity): static
     {
         $this->toCity = $toCity;
-
-        return $this;
-    }
-
-    public function getFromCountry(): ?Country
-    {
-        return $this->fromCountry;
-    }
-
-    public function setFromCountry(?Country $fromCountry): static
-    {
-        $this->fromCountry = $fromCountry;
-
-        return $this;
-    }
-
-    public function getToCountry(): ?Country
-    {
-        return $this->toCountry;
-    }
-
-    public function setToCountry(?Country $toCountry): static
-    {
-        $this->toCountry = $toCountry;
 
         return $this;
     }

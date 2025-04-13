@@ -4,25 +4,34 @@ declare(strict_types=1);
 
 namespace App\Form;
 
-use App\Entity\Travel;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class TravelType extends AbstractType
+class ShopRequestType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('departure', TextType::class, [
-                'label' => 'Departure',
+            ->add('productUrl', TextType::class, [
+                'label' => 'Product URL',
                 'mapped' => false,
                 'label_attr' => ['mb-1'],
                 'attr' => [
-                    'class' => 'city-autocomplete bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5',
-                    'placeholder' => 'Choose City',
+                    'class' => 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5',
+                    'placeholder' => 'Product URL',
+                    'required' => true,
+                ],
+            ])
+            ->add('departure', TextType::class, [
+                'label' => 'Choose from which country you want this product',
+                'mapped' => false,
+                'label_attr' => ['mb-1'],
+                'attr' => [
+                    'class' => 'country-autocomplete bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5',
+                    'placeholder' => 'Choose Country',
                     'id' => 'from-country-city-input',
                     'list' => 'from-suggestions',
                     'required' => true,
@@ -40,15 +49,6 @@ class TravelType extends AbstractType
                     'required' => true,
                 ],
             ])
-            ->add('tripDate', TextType::class, [
-                'mapped' => false,
-                'label' => 'Trip date(s)',
-                'label_attr' => ['mb-1'],
-                'attr' => [
-                    'required' => true,
-                    'class' => 'js-flatpickr-date bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5',
-                ],
-            ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Add Trip',
                 'attr' => [
@@ -57,15 +57,10 @@ class TravelType extends AbstractType
                 'row_attr' => [
                     'class' => 'flex justify-center mt-4',
                 ],
-            ])
-        ;
+            ]);
     }
 
-    public function configureOptions(OptionsResolver $resolver): void
+    public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'data_class' => Travel::class,
-            'csrf_token_id' => 'travel_form',
-        ]);
     }
 }

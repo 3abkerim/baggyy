@@ -14,11 +14,16 @@
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWdSjFw34553EpW0S2nGR4L_sasC-VozM&libraries=places"></script>
+        <script
+                async
+                defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWdSjFw34553EpW0S2nGR4L_sasC-VozM&libraries=places&callback=initGooglePlaces"
+        ></script>
     </head>
     <body class="pt-32">
         {{ include('topbar/_navbar.html.twig') }}
         {% block body %}{% endblock %}
+        {{ include('footer/_footer.html.twig') }}
         {{ encore_entry_script_tags('navbar') }}
     </body>
 </html>

@@ -1,9 +1,7 @@
 import { setupTabs } from './tabManager';
 import { initializeGooglePlacesAutocomplete } from '../tools/googlePlacesCityAutocomplete';
 
-document.addEventListener('DOMContentLoaded', () => {
-    setupTabs();
-
+window.initGooglePlaces = function () {
     initializeGooglePlacesAutocomplete({
         selector: '.city-autocomplete',
         country: null,
@@ -20,4 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         },
     });
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+    setupTabs();
 });

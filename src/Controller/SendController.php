@@ -13,7 +13,7 @@ final class SendController extends AbstractController
     #[Route('/send', name: 'send')]
     public function index(): Response
     {
-        return $this->render('send/index.html.twig', [
+        return $this->render('create.html.twig', [
             'controller_name' => 'SendController',
         ]);
     }

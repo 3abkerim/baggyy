@@ -13,10 +13,6 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class TravelController extends AbstractController
 {
-    //    public function index(): Response
-    //    {
-    //
-    //    }
     #[Route('/travel', name: 'travel')]
     public function create(Request $request): Response
     {
@@ -24,7 +20,26 @@ final class TravelController extends AbstractController
         $form = $this->createForm(TravelType::class, $travel);
         $form->handleRequest($request);
 
-        return $this->render('travel/index.html.twig', [
+        if ($form->isSubmitted()) {
+            dump('Submitted ✅');
+
+            if ($form->isValid()) {
+                dump('Valid ✅');
+            } else {
+                dump('Not valid ❌');
+
+                // 🧠 Show all form errors
+                foreach ($form->getErrors(true) as $error) {
+                    dump($error->getOrigin()->getName() . ': ' . $error->getMessage());
+                }
+            }
+        }
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            dump($form->isSubmitted(), $form->isValid(), $request->request->all());
+        }
+
+        return $this->render('travel/create.html.twig', [
             'form' => $form->createView(),
         ]);
     }

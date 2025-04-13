@@ -29,9 +29,16 @@ class Country
     #[ORM\OneToMany(targetEntity: City::class, mappedBy: 'country')]
     private Collection $cities;
 
+    /**
+     * @var Collection<int, ShopRequest>
+     */
+    #[ORM\OneToMany(targetEntity: ShopRequest::class, mappedBy: 'departureCountry')]
+    private Collection $shopRequests;
+
     public function __construct()
     {
         $this->cities = new ArrayCollection();
+        $this->shopRequests = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -74,6 +81,36 @@ class Country
         // set the owning side to null (unless already changed)
         if ($this->cities->removeElement($city) && $city->getCountry() === $this) {
             $city->setCountry(null);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ShopRequest>
+     */
+    public function getShopRequests(): Collection
+    {
+        return $this->shopRequests;
+    }
+
+    public function addShopRequest(ShopRequest $shopRequest): static
+    {
+        if (!$this->shopRequests->contains($shopRequest)) {
+            $this->shopRequests->add($shopRequest);
+            $shopRequest->setDepartureCountry($this);
+        }
+
+        return $this;
+    }
+
+    public function removeShopRequest(ShopRequest $shopRequest): static
+    {
+        if ($this->shopRequests->removeElement($shopRequest)) {
+            // set the owning side to null (unless already changed)
+            if ($shopRequest->getDepartureCountry() === $this) {
+                $shopRequest->setDepartureCountry(null);
+            }
         }
 
         return $this;
