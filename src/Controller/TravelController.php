@@ -30,7 +30,7 @@ final class TravelController extends AbstractController
 
                 // 🧠 Show all form errors
                 foreach ($form->getErrors(true) as $error) {
-                    dump($error->getOrigin()->getName() . ': ' . $error->getMessage());
+                    dump($error->getOrigin()->getName().': '.$error->getMessage());
                 }
             }
         }

@@ -16,8 +16,7 @@ final class ShopController extends AbstractController
 {
     public function __construct(
         private readonly EntityManagerInterface $entityManager,
-    )
-    {}
+    ) {}
 
     #[Route('/shop/create', name: 'shop_create')]
     public function create(Request $request): Response
@@ -27,7 +26,7 @@ final class ShopController extends AbstractController
         $form = $this->createForm(ShopRequestType::class, $shopRequest);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $this->entityManager->persist($shopRequest);
             $this->entityManager->flush();
 
@@ -39,7 +38,6 @@ final class ShopController extends AbstractController
         return $this->render('shop/create.html.twig', [
             'form' => $form->createView(),
         ]);
-
     }
 
     #[Route('/shop/success', name: 'shop_success')]

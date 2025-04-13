@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services;
 
 use App\Entity\City;
@@ -7,7 +9,6 @@ use App\Entity\Country;
 use App\Repository\CityRepository;
 use App\Repository\CountryRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use phpDocumentor\Reflection\Location;
 
 final readonly class LocationService
 {
@@ -15,9 +16,7 @@ final readonly class LocationService
         private CountryRepository $countryRepository,
         private CityRepository $cityRepository,
         private EntityManagerInterface $entityManager,
-    )
-    {
-    }
+    ) {}
 
     public function handleCity(string $cityName, Country $country): City
     {
@@ -38,7 +37,7 @@ final readonly class LocationService
     {
         $country = $this->countryRepository->findOneBy(['name' => $countryName]);
 
-        if (!$country){
+        if (!$country) {
             $country = new Country();
             $country->setName($countryName);
             $this->entityManager->persist($country);
@@ -46,5 +45,4 @@ final readonly class LocationService
 
         return $country;
     }
-
 }

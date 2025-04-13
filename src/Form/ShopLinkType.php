@@ -20,18 +20,16 @@ class ShopLinkType extends AbstractType
                 'required' => true,
                 'mapped' => false,
                 'attr' => [
-                    'placeholder' => 'https://example.com/product'
-                ]
+                    'placeholder' => 'https://example.com/product',
+                ],
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Next',
                 'attr' => [
-                    'class' => 'btn btn-primary mt-4'
-                ]
+                    'class' => 'btn btn-primary mt-4',
+                ],
             ]);
     }
 
-    public function configureOptions(OptionsResolver $resolver)
-    {
-    }
+    public function configureOptions(OptionsResolver $resolver) {}
 }

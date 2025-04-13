@@ -1,9 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services;
 
 use Symfony\Component\BrowserKit\HttpBrowser;
 use Symfony\Component\HttpClient\HttpClient;
+use Throwable;
 
 class ProductScrapperService
 {
@@ -23,11 +26,9 @@ class ProductScrapperService
                 'price' => $price,
                 'productUrl' => $url,
             ];
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             // Log the error or notify
             return [];
         }
-
     }
-
 }
