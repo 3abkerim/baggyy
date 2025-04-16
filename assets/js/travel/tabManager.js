@@ -1,32 +1,54 @@
 import { initFlatpickr } from './flatpickrManager.js';
 
-export function setupTabs() {
-    const tabButtons = document.querySelectorAll('.tab-btn');
-    const returnDateDiv = document.querySelector('.js-return-date-div');
+export const setupTabs = () => {
+    const tabButtons = {
+        oneWay: document.getElementById('one-way'),
+        roundTrip: document.getElementById('round-trip')
+    };
 
-    function activateTab(tabName) {
-        if (returnDateDiv) {
-            returnDateDiv.classList.toggle('invisible', tabName !== 'round-trip');
-            returnDateDiv.classList.toggle('h-0', tabName !== 'round-trip');
+    const classStates = {
+        active: ['bg-gray-100', 'text-black'],
+        inactive: ['bg-white', 'hover:bg-gray-50', 'text-gray-500']
+    };
+
+    let currentTab = null;
+
+    const updateElementClasses = (element, addClasses, removeClasses) => {
+        removeClasses.forEach(cls => element.classList.remove(cls));
+        addClasses.forEach(cls => element.classList.add(cls));
+    };
+
+    const activateTab = (tabKey) => {
+        const newTab = tabButtons[tabKey];
+        if (!newTab || newTab === currentTab) return;
+
+        if (currentTab) {
+            updateElementClasses(currentTab, classStates.inactive, classStates.active);
         }
 
-        initFlatpickr(tabName === 'round-trip' ? 'range' : 'single');
+        updateElementClasses(newTab, classStates.active, classStates.inactive);
+        currentTab = newTab;
 
-        tabButtons.forEach(btn => {
-            const isActive = btn.dataset.tab === tabName;
-            btn.classList.toggle('bg-gray-100', isActive);
-            btn.classList.toggle('text-gray-900', isActive);
-            btn.classList.toggle('bg-white', !isActive);
-            btn.classList.toggle('hover:bg-gray-50', !isActive);
-            btn.classList.toggle('text-gray-500', !isActive);
+        const flatpickrMode = tabKey === 'roundTrip' ? 'range' : 'single';
+        initFlatpickr(flatpickrMode);
+    };
+
+    const initializeTabs = () => {
+        Object.values(tabButtons).forEach(button => {
+            if (button) {
+                updateElementClasses(button, classStates.inactive, classStates.active);
+            }
         });
-    }
 
-    tabButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            activateTab(btn.dataset.tab);
+        Object.entries(tabButtons).forEach(([tabKey, button]) => {
+            if (button) {
+                button.addEventListener('click', () => activateTab(tabKey));
+            }
         });
-    });
 
-    activateTab('one-way');
-}
+        activateTab('oneWay');
+    };
+
+
+    initializeTabs();
+};

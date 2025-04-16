@@ -1,3 +1,5 @@
+{% import 'components/_buttons.twig' as buttons %}
+
 {% extends 'base.html.twig' %}
 
 {% block title %}Baggyy : Travel{% endblock %}
@@ -7,12 +9,16 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-secondary rounded-2xl border-2 border-black px-4">
             <div class="flex justify-center items-center">
                 {{ form_start(form, {attr: {class: 'w-full mx-auto px-4 mt-6 md:mt-0'}}) }}
-                    <ul class="flex text-sm font-medium text-center text-gray-500 rounded-lg shadow-sm mb-4 overflow-hidden">
+                    <ul class="flex text-sm font-medium text-center rounded-lg shadow-sm mb-4 overflow-hidden">
                         <li class="w-full">
-                            <button type="button" data-tab="one-way" class="cursor-pointer tab-btn inline-block w-full p-4 text-gray-900 bg-gray-100 focus:outline-none">One-way Trip</button>
+                            <div id="one-way" class="cursor-pointer tab-btn inline-block w-full p-4 focus:outline-none">
+                                One-way Trip
+                            </div>
                         </li>
                         <li class="w-full">
-                            <button type="button" data-tab="round-trip" class="cursor-pointer tab-btn inline-block w-full p-4 bg-white hover:bg-gray-50 focus:outline-none">Round Trip</button>
+                            <div id="round-trip" type="button" class="cursor-pointer tab-btn inline-block w-full p-4 focus:outline-none">
+                                Round Trip
+                            </div>
                         </li>
                     </ul>
                     <div>
@@ -47,10 +53,11 @@
                         </div>
                         {{ form_errors(form.tripDate) }}
                     </div>
+                    <div class="flex justify-center items-end mt-4">
+                        {{ buttons.BaggyyButton('Add Trip','submit') }}
+                    </div>
 
-                    {{ form_row(form.submit) }}
-
-                {{ form_end(form) }}
+                {{ form_end(form, { render_rest: false }) }}
             </div>
 
             <div class="text-center flex justify-center items-center flex-col h-120">
