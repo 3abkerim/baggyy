@@ -9,6 +9,7 @@ use App\Entity\Country;
 use App\Repository\CityRepository;
 use App\Repository\CountryRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use InvalidArgumentException;
 
 final readonly class LocationService
 {
@@ -23,21 +24,20 @@ final readonly class LocationService
         $parts = array_map('trim', explode(',', $location));
 
         $cityName = $parts[0] ?? null;
-//        $regionName = count($parts) === 3 ? $parts[1] : null;
+        //        $regionName = count($parts) === 3 ? $parts[1] : null;
         $countryName = $parts[count($parts) - 1] ?? null;
 
         if (!$cityName || !$countryName) {
-            throw new \InvalidArgumentException("Invalid location format: $location");
+            throw new InvalidArgumentException("Invalid location format: $location");
         }
 
         $country = $this->handleCountry($countryName);
         $city = $this->handleCity($cityName, $country);
-        //todo:handle region
+        // todo:handle region
 
         $this->entityManager->flush();
 
         return $city;
-
     }
 
     public function handleCity(string $cityName, Country $country): City

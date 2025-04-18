@@ -65,7 +65,6 @@ class TravelType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Travel::class,
-//            'csrf_token_id' => 'travel_form',
         ]);
     }
 }

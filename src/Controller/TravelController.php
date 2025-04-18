@@ -16,8 +16,7 @@ final class TravelController extends AbstractController
 {
     public function __construct(
         private readonly HandleTravelRequestService $handleTravelRequestService,
-    )
-    {}
+    ) {}
 
     #[Route('/travel', name: 'travel')]
     public function create(Request $request): Response
@@ -32,7 +31,6 @@ final class TravelController extends AbstractController
             $tripData['tripDate'] = $form->get('tripDate')->getData();
 
             $this->handleTravelRequestService->create($travel, $tripData);
-
         }
 
         return $this->render('travel/create.html.twig', [

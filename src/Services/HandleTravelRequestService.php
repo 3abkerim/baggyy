@@ -1,11 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services;
 
 use App\Entity\Travel;
 use App\Entity\User;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
+use LogicException;
 use Symfony\Bundle\SecurityBundle\Security;
 
 final readonly class HandleTravelRequestService
@@ -14,7 +17,7 @@ final readonly class HandleTravelRequestService
         private readonly LocationService $locationService,
         private readonly EntityManagerInterface $entityManager,
         private readonly Security $security,
-    ){}
+    ) {}
 
     public function create(Travel $travel, array $tripData): void
     {
@@ -27,7 +30,7 @@ final readonly class HandleTravelRequestService
         $user = $this->security->getUser();
 
         if (!$user instanceof User) {
-            throw new \LogicException('User must be logged in to create a travel.');
+            throw new LogicException('User must be logged in to create a travel.');
         }
 
         if ($isRoundTrip) {
@@ -62,8 +65,5 @@ final readonly class HandleTravelRequestService
         }
 
         $this->entityManager->flush();
-
-
     }
-
 }

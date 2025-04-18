@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\Service;
 
 use App\Entity\City;
@@ -35,10 +37,10 @@ class HandleTravelRequestServiceTest extends TestCase
             ->method('persist')
             ->with($this->callback(function (Travel $travel) use ($departureCity, $destinationCity, $tripDate, $user) {
                 return
-                    $travel->getDepartureCity() === $departureCity &&
-                    $travel->getDestinationCity() === $destinationCity &&
-                    $travel->getTripDate()->format('d-m-Y') === $tripDate &&
-                    $travel->getUser() === $user;
+                    $travel->getDepartureCity() === $departureCity
+                    && $travel->getDestinationCity() === $destinationCity
+                    && $travel->getTripDate()->format('d-m-Y') === $tripDate
+                    && $travel->getUser() === $user;
             }));
 
         $entityManager->expects($this->once())->method('flush');
@@ -53,7 +55,7 @@ class HandleTravelRequestServiceTest extends TestCase
         $tripData = [
             'departureCity' => $departureCityName,
             'destinationCity' => $destinationCityName,
-            'tripDate' => $tripDate
+            'tripDate' => $tripDate,
         ];
 
         $service->create($travel, $tripData);
@@ -84,7 +86,7 @@ class HandleTravelRequestServiceTest extends TestCase
         $tripData = [
             'departureCity' => 'Paris',
             'destinationCity' => 'Lyon',
-            'tripDate' => $tripDate
+            'tripDate' => $tripDate,
         ];
 
         $service->create($travel, $tripData);
