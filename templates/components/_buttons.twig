@@ -1,0 +1,11 @@
+{% macro BaggyyButton(text, type, extraClass) %}
+    <button type="{{ type }}" class="text-black bg-white border-2 border-black hover:bg-baggyy-yellow hover:cursor-pointer focus:ring-4 focus:outline-none focus:ring-blue-300 font-phudu-bold rounded-full text-sm px-4 py-2 text-center {{ extraClass }}">
+        {{ text }}
+    </button>
+{% endmacro %}
+
+{% macro BaggyyLink(text, href, extraClass) %}
+    <a href="{{ href }}" class="text-black bg-white border-2 border-black hover:bg-baggyy-yellow hover:cursor-pointer focus:ring-4 focus:outline-none focus:ring-blue-300 font-phudu-bold rounded-full text-sm px-4 py-2 text-center {{ extraClass }}">
+        {{ text }}
+    </a>
+{% endmacro %}
