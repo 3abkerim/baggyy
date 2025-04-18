@@ -1,25 +1,12 @@
 import { setupTabs } from './tabManager';
-import { initializeGooglePlacesAutocomplete } from '../tools/googlePlacesCityAutocomplete';
+import { setupPlacesAutocomplete } from '../tools/googlePlaces/cityAutocompleteSetup';
+import Alpine from 'alpinejs'
 
-window.initGooglePlaces = function () {
-    initializeGooglePlacesAutocomplete({
-        selector: '.city-autocomplete',
-        country: null,
-        onPlaceSelected: ({ name, lat, lng, input }) => {
-            console.log(`Selected city: ${name}`);
-            console.log(`Latitude: ${lat}, Longitude: ${lng}`);
-
-            const prefix = input.classList.contains('departure') ? 'departure' : 'destination';
-            const latInput = document.getElementById(`${prefix}-lat`);
-            const lngInput = document.getElementById(`${prefix}-lng`);
-            if (latInput && lngInput) {
-                latInput.value = lat;
-                lngInput.value = lng;
-            }
-        },
-    });
-};
+window.Alpine = Alpine
+Alpine.start()
 
 document.addEventListener('DOMContentLoaded', () => {
     setupTabs();
-});
+    setupPlacesAutocomplete().catch(error =>
+        console.error('Google Maps failed to load:', error)
+    );});

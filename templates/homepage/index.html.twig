@@ -3,9 +3,9 @@
 {% block title %}Homepage{% endblock %}
 
 {% block body %}
-    <div class="container bg-blue-500 mt-9 mx-auto flex flex-wrap rounded-lg border-2 border-black">
-        <div class="w-full md:w-1/2 py-8">
-            <img class="mx-auto" src="{{ asset('images/mascot-colis-expat.png') }}" alt="">
+    <section class="container bg-blue-500 mt-9 mx-auto flex rounded-lg border-2 border-black">
+        <div class="w-full hidden md:block md:w-1/2 py-8">
+            <img class="mx-auto w-52 h-auto" src="{{ asset('images/traveller.png') }}" alt="traveller with a suitcase">
         </div>
         <div class="w-full md:w-1/2 text-justify py-8 px-10 my-auto">
             <h1 class="mx-auto text-center text-amber-50 font-bold text-3xl mb-3">Welcome to Baggyy</h1>
@@ -15,24 +15,54 @@
             </p>
             <a href="#" class="flex justify-center px-6 py-3 bg-amber-50 border-2 border-black font-semibold rounded-lg shadow-md hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">Get Started Now</a>
         </div>
-    </div>
-    <div class="container mx-auto mt-7">
-        <h2 class="text-center font-bold text-3xl uppercase mb-8">Blog</h2>
-        <div class="flex justify-evenly">
-            <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white border-2 border-black">
-                <img class="w-full" src="{{ asset('images/baggy_bg_orange.jpg') }}" alt="Sunset in the mountains">
+    </section>
+    <section class="container mx-auto mt-7">
+        <h2 class="text-center font-bold text-3xl uppercase mb-8 text-white">Blog</h2>
+        <div class="flex flex-wrap justify-evenly gap-6">
+            <article class="max-w-sm rounded overflow-hidden shadow-lg bg-white border-2 border-black">
+                <img class="w-full" src="{{ asset('images/travel_rewarding.png') }}" alt="Global delivery connections">
                 <div class="px-6 py-4">
-                    <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
+                    <div class="font-bold text-xl mb-2">How Baggyy Makes Travel Rewarding</div>
                     <p class="text-gray-700 text-base">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
+                        Discover how travelers earn money by delivering packages along their routes. Baggyy turns extra luggage space into opportunity.
                     </p>
                 </div>
                 <div class="px-6 pt-4 pb-2">
-                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
-                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
-                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
+                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#earnwhiletraveling</span>
+                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#baggyy</span>
+                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#freedom</span>
                 </div>
-            </div>
+            </article>
+
+            <article class="max-w-sm rounded overflow-hidden shadow-lg bg-white border-2 border-black">
+                <img class="w-full" src="{{ asset('images/tracking_parcel_illustration.png') }}" alt="Safe package delivery">
+                <div class="px-6 py-4">
+                    <div class="font-bold text-xl mb-2">Trusted Package Delivery Made Personal</div>
+                    <p class="text-gray-700 text-base">
+                        Say goodbye to unreliable shipping. Baggyy connects you with real people to deliver your items safely, quickly, and affordably.
+                    </p>
+                </div>
+                <div class="px-6 pt-4 pb-2">
+                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#trust</span>
+                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#community</span>
+                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#baggyy</span>
+                </div>
+            </article>
+
+            <article class="max-w-sm rounded overflow-hidden shadow-lg bg-white border-2 border-black">
+                <img class="w-full" src="{{ asset('images/reward.png') }}" alt="Find rare items abroad">
+                <div class="px-6 py-4">
+                    <div class="font-bold text-xl mb-2">Get Rare Products From Anywhere</div>
+                    <p class="text-gray-700 text-base">
+                        Can’t find it locally? Use Baggyy to connect with travelers who can bring that special item straight to your door.
+                    </p>
+                </div>
+                <div class="px-6 pt-4 pb-2">
+                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#shopping</span>
+                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#worldwide</span>
+                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#wishlist</span>
+                </div>
+            </article>
         </div>
-    </div>
+    </section>
 {% endblock %}

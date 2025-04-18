@@ -30,16 +30,17 @@
 
 body {
     font-family: phudu, sans-serif;
-    background: #36d9ad;
+    background: #4C34E0;
 }
 nav {
-    background: #36d9ad;
+    background: #4C34E0;
 }
 
 @theme {
     --font-phudu-bold: 'phudu-bold', sans-serif;
     --color-primary: #0989d9;
     --color-primary-hover: #1e40af;
-    --color-secondary: #fcad2d;
+    --color-secondary: white;
     --color-background-green: #36d9ad;
+    --color-baggyy-yellow: #F2FE00
 }

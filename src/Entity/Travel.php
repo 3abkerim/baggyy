@@ -25,13 +25,13 @@ class Travel
 
     #[ORM\ManyToOne(inversedBy: 'travel')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $idUser = null;
+    private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'travel')]
-    private ?City $fromCity = null;
+    private ?City $departureCity = null;
 
     #[ORM\ManyToOne]
-    private ?City $toCity = null;
+    private ?City $destinationCity = null;
 
     public function getId(): ?int
     {
@@ -50,38 +50,38 @@ class Travel
         return $this;
     }
 
-    public function getIdUser(): ?User
+    public function getUser(): ?User
     {
-        return $this->idUser;
+        return $this->user;
     }
 
-    public function setIdUser(?User $idUser): static
+    public function setUser(?User $user): static
     {
-        $this->idUser = $idUser;
+        $this->user = $user;
 
         return $this;
     }
 
-    public function getFromCity(): ?City
+    public function getDepartureCity(): ?City
     {
-        return $this->fromCity;
+        return $this->departureCity;
     }
 
-    public function setFromCity(?City $fromCity): static
+    public function setDepartureCity(?City $departureCity): static
     {
-        $this->fromCity = $fromCity;
+        $this->departureCity = $departureCity;
 
         return $this;
     }
 
-    public function getToCity(): ?City
+    public function getDestinationCity(): ?City
     {
-        return $this->toCity;
+        return $this->destinationCity;
     }
 
-    public function setToCity(?City $toCity): static
+    public function setDestinationCity(?City $destinationCity): static
     {
-        $this->toCity = $toCity;
+        $this->destinationCity = $destinationCity;
 
         return $this;
     }

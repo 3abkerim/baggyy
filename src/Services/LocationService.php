@@ -18,6 +18,28 @@ final readonly class LocationService
         private EntityManagerInterface $entityManager,
     ) {}
 
+    public function getOrCreateCityFromString(string $location): City
+    {
+        $parts = array_map('trim', explode(',', $location));
+
+        $cityName = $parts[0] ?? null;
+//        $regionName = count($parts) === 3 ? $parts[1] : null;
+        $countryName = $parts[count($parts) - 1] ?? null;
+
+        if (!$cityName || !$countryName) {
+            throw new \InvalidArgumentException("Invalid location format: $location");
+        }
+
+        $country = $this->handleCountry($countryName);
+        $city = $this->handleCity($cityName, $country);
+        //todo:handle region
+
+        $this->entityManager->flush();
+
+        return $city;
+
+    }
+
     public function handleCity(string $cityName, Country $country): City
     {
         $city = $this->cityRepository->findOneBy(['name' => $cityName, 'country' => $country]);
@@ -27,7 +49,6 @@ final readonly class LocationService
             $city->setName($cityName);
             $city->setCountry($country);
             $this->entityManager->persist($city);
-            $this->entityManager->flush();
         }
 
         return $city;

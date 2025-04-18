@@ -24,7 +24,6 @@ class City
     private ?string $name = null;
 
     #[ORM\ManyToOne(inversedBy: 'cities')]
-    #[ORM\JoinColumn(nullable: false)]
     private ?Country $country = null;
 
     /**
@@ -32,6 +31,9 @@ class City
      */
     #[ORM\OneToMany(targetEntity: ShopRequest::class, mappedBy: 'destinationCity')]
     private Collection $shopRequests;
+
+    #[ORM\ManyToOne(inversedBy: 'cities')]
+    private ?State $state = null;
 
     public function __construct()
     {
@@ -93,6 +95,18 @@ class City
                 $shopRequest->setDestinationCity(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getState(): ?State
+    {
+        return $this->state;
+    }
+
+    public function setState(?State $state): static
+    {
+        $this->state = $state;
 
         return $this;
     }

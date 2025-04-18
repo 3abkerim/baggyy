@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Entity\Travel;
 use App\Form\TravelType;
+use App\Services\HandleTravelRequestService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,6 +14,11 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class TravelController extends AbstractController
 {
+    public function __construct(
+        private readonly HandleTravelRequestService $handleTravelRequestService,
+    )
+    {}
+
     #[Route('/travel', name: 'travel')]
     public function create(Request $request): Response
     {
@@ -20,23 +26,13 @@ final class TravelController extends AbstractController
         $form = $this->createForm(TravelType::class, $travel);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()) {
-            dump('Submitted ✅');
-
-            if ($form->isValid()) {
-                dump('Valid ✅');
-            } else {
-                dump('Not valid ❌');
-
-                // 🧠 Show all form errors
-                foreach ($form->getErrors(true) as $error) {
-                    dump($error->getOrigin()->getName().': '.$error->getMessage());
-                }
-            }
-        }
-
         if ($form->isSubmitted() && $form->isValid()) {
-            dump($form->isSubmitted(), $form->isValid(), $request->request->all());
+            $tripData['departureCity'] = $form->get('departure')->getData();
+            $tripData['destinationCity'] = $form->get('destination')->getData();
+            $tripData['tripDate'] = $form->get('tripDate')->getData();
+
+            $this->handleTravelRequestService->create($travel, $tripData);
+
         }
 
         return $this->render('travel/create.html.twig', [

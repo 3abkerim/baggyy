@@ -1,3 +1,5 @@
+{% import 'components/_buttons.twig' as buttons %}
+
 {% extends 'base.html.twig' %}
 
 {% block title %}Hello ShopController!{% endblock %}
@@ -42,11 +44,11 @@
                         {{ form_errors(form.destination) }}
                     </div>
 
-                    <div class="mt-4">
-                        {{ form_row(form.submit) }}
+                    <div class="flex justify-center items-end mt-4">
+                        {{ buttons.BaggyyButton('Add Trip','submit') }}
                     </div>
 
-                    {{ form_end(form) }}
+                    {{ form_end(form, { render_rest: false }) }}
                 </div>
             </div>
         </div>
