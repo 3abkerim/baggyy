@@ -8,10 +8,8 @@ use App\Repository\TravelRepository;
 use DateTimeInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\UX\Turbo\Attribute\Broadcast;
 
 #[ORM\Entity(repositoryClass: TravelRepository::class)]
-#[Broadcast]
 class Travel
 {
     #[ORM\Id]
