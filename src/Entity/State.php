@@ -84,11 +84,9 @@ class State
 
     public function removeCity(City $city): static
     {
-        if ($this->cities->removeElement($city)) {
-            // set the owning side to null (unless already changed)
-            if ($city->getState() === $this) {
-                $city->setState(null);
-            }
+        // set the owning side to null (unless already changed)
+        if ($this->cities->removeElement($city) && $city->getState() === $this) {
+            $city->setState(null);
         }
 
         return $this;

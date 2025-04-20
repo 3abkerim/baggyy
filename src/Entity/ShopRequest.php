@@ -107,11 +107,9 @@ class ShopRequest
 
     public function removeImage(Image $image): static
     {
-        if ($this->images->removeElement($image)) {
-            // set the owning side to null (unless already changed)
-            if ($image->getIdShopRequest() === $this) {
-                $image->setIdShopRequest(null);
-            }
+        // set the owning side to null (unless already changed)
+        if ($this->images->removeElement($image) && $image->getIdShopRequest() === $this) {
+            $image->setIdShopRequest(null);
         }
 
         return $this;

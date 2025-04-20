@@ -9,9 +9,10 @@ use DateTime;
 
 class TravelFactory
 {
+    public $locationResolver;
     public function createFromForm(array $data): array
     {
-        [$start, $end] = explode(' to ', $data['tripDate']);
+        [$start, $end] = explode(' to ', (string) $data['tripDate']);
 
         $departureDate = DateTime::createFromFormat('d-m-Y', trim($start));
         $returnDate = isset($end) ? DateTime::createFromFormat('d-m-Y', trim($end)) : null;

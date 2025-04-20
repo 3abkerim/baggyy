@@ -25,7 +25,7 @@ final readonly class HandleTravelRequestService
         $destinationCity = $this->locationService->getOrCreateCityFromString($tripData['destinationCity']);
 
         $tripDateInput = $tripData['tripDate'];
-        $isRoundTrip = str_contains($tripDateInput, ' to ');
+        $isRoundTrip = str_contains((string) $tripDateInput, ' to ');
 
         $user = $this->security->getUser();
 
@@ -34,7 +34,7 @@ final readonly class HandleTravelRequestService
         }
 
         if ($isRoundTrip) {
-            [$departureDateStr, $returnDateStr] = explode(' to ', $tripDateInput);
+            [$departureDateStr, $returnDateStr] = explode(' to ', (string) $tripDateInput);
 
             $departureDate = DateTime::createFromFormat('d-m-Y', trim($departureDateStr));
             $returnDate = DateTime::createFromFormat('d-m-Y', trim($returnDateStr));
@@ -54,7 +54,7 @@ final readonly class HandleTravelRequestService
 
             $this->entityManager->persist($returnTrip);
         } else {
-            $departureDate = DateTime::createFromFormat('d-m-Y', trim($tripDateInput));
+            $departureDate = DateTime::createFromFormat('d-m-Y', trim((string) $tripDateInput));
 
             $travel->setDepartureCity($departureCity);
             $travel->setDestinationCity($destinationCity);

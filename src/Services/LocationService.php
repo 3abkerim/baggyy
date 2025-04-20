@@ -31,7 +31,7 @@ final readonly class LocationService
         $countryName = $parts[count($parts) - 1] ?? null;
 
         if (!$cityName || !$countryName) {
-            throw new InvalidArgumentException("Invalid location format: $location");
+            throw new InvalidArgumentException('Invalid location format: ' . $location);
         }
 
         $country = $this->handleCountry($countryName);
@@ -42,7 +42,7 @@ final readonly class LocationService
             $state = $this->handleState($stateName, $country);
         }
 
-        if ($state) {
+        if ($state instanceof State) {
             $city->setState($state);
         }
 
@@ -55,7 +55,7 @@ final readonly class LocationService
     {
         $city = $this->cityRepository->findOneBy(['name' => $cityName, 'country' => $country]);
 
-        if (!$city) {
+        if ($city === null) {
             $city = new City();
             $city->setName($cityName);
             $city->setCountry($country);
@@ -69,7 +69,7 @@ final readonly class LocationService
     {
         $country = $this->countryRepository->findOneBy(['name' => $countryName]);
 
-        if (!$country) {
+        if ($country === null) {
             $country = new Country();
             $country->setName($countryName);
             $this->entityManager->persist($country);
@@ -82,7 +82,7 @@ final readonly class LocationService
     {
         $state = $this->stateRepository->findOneBy(['name' => $stateName, 'country' => $country]);
 
-        if(!$state) {
+        if($state === null) {
             $state = new State();
             $state->setName($stateName);
             $state->setCountry($country);

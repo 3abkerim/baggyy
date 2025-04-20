@@ -111,11 +111,9 @@ class Country
 
     public function removeShopRequest(ShopRequest $shopRequest): static
     {
-        if ($this->shopRequests->removeElement($shopRequest)) {
-            // set the owning side to null (unless already changed)
-            if ($shopRequest->getDepartureCountry() === $this) {
-                $shopRequest->setDepartureCountry(null);
-            }
+        // set the owning side to null (unless already changed)
+        if ($this->shopRequests->removeElement($shopRequest) && $shopRequest->getDepartureCountry() === $this) {
+            $shopRequest->setDepartureCountry(null);
         }
 
         return $this;
@@ -141,11 +139,9 @@ class Country
 
     public function removeState(State $state): static
     {
-        if ($this->states->removeElement($state)) {
-            // set the owning side to null (unless already changed)
-            if ($state->getCountry() === $this) {
-                $state->setCountry(null);
-            }
+        // set the owning side to null (unless already changed)
+        if ($this->states->removeElement($state) && $state->getCountry() === $this) {
+            $state->setCountry(null);
         }
 
         return $this;

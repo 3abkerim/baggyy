@@ -87,11 +87,9 @@ class City
 
     public function removeShopRequest(ShopRequest $shopRequest): static
     {
-        if ($this->shopRequests->removeElement($shopRequest)) {
-            // set the owning side to null (unless already changed)
-            if ($shopRequest->getDestinationCity() === $this) {
-                $shopRequest->setDestinationCity(null);
-            }
+        // set the owning side to null (unless already changed)
+        if ($this->shopRequests->removeElement($shopRequest) && $shopRequest->getDestinationCity() === $this) {
+            $shopRequest->setDestinationCity(null);
         }
 
         return $this;

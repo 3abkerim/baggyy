@@ -26,7 +26,7 @@ class ProductScrapperService
                 'price' => $price,
                 'productUrl' => $url,
             ];
-        } catch (Throwable $e) {
+        } catch (Throwable) {
             // Log the error or notify
             return [];
         }
