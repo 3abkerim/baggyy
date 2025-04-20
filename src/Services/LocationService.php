@@ -6,8 +6,10 @@ namespace App\Services;
 
 use App\Entity\City;
 use App\Entity\Country;
+use App\Entity\State;
 use App\Repository\CityRepository;
 use App\Repository\CountryRepository;
+use App\Repository\StateRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use InvalidArgumentException;
 
@@ -16,6 +18,7 @@ final readonly class LocationService
     public function __construct(
         private CountryRepository $countryRepository,
         private CityRepository $cityRepository,
+        private StateRepository $stateRepository,
         private EntityManagerInterface $entityManager,
     ) {}
 
@@ -24,7 +27,7 @@ final readonly class LocationService
         $parts = array_map('trim', explode(',', $location));
 
         $cityName = $parts[0] ?? null;
-        //        $regionName = count($parts) === 3 ? $parts[1] : null;
+        $stateName = count($parts) === 3 ? $parts[1] : null;
         $countryName = $parts[count($parts) - 1] ?? null;
 
         if (!$cityName || !$countryName) {
@@ -33,7 +36,15 @@ final readonly class LocationService
 
         $country = $this->handleCountry($countryName);
         $city = $this->handleCity($cityName, $country);
-        // todo:handle region
+
+        $state = null;
+        if($stateName) {
+            $state = $this->handleState($stateName, $country);
+        }
+
+        if ($state) {
+            $city->setState($state);
+        }
 
         $this->entityManager->flush();
 
@@ -65,5 +76,19 @@ final readonly class LocationService
         }
 
         return $country;
+    }
+
+    public function handleState(string $stateName, Country $country): State
+    {
+        $state = $this->stateRepository->findOneBy(['name' => $stateName, 'country' => $country]);
+
+        if(!$state) {
+            $state = new State();
+            $state->setName($stateName);
+            $state->setCountry($country);
+            $this->entityManager->persist($state);
+        }
+
+        return $state;
     }
 }
