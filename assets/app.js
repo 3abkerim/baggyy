@@ -6,3 +6,7 @@ import './bootstrap.js';
  * {{ encore_entry_script_tags('app') }} in base.html.twig.
  */
 import './styles/app.css';
+import Alpine from 'alpinejs';
+
+window.Alpine = Alpine;
+Alpine.start();

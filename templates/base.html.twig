@@ -16,8 +16,8 @@
         {{ include('topbar/_navbar.html.twig') }}
         {% block body %}{% endblock %}
         {{ include('footer/_footer.html.twig') }}
-        {{ encore_entry_script_tags('navbar') }}
         {% block javascripts %}
+            {{ encore_entry_script_tags('navbar') }}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </body>
