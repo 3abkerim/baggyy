@@ -26,19 +26,19 @@ final readonly class LocationService
     {
         $parts = array_map('trim', explode(',', $location));
 
-        $cityName = $parts[0] ?? null;
-        $stateName = count($parts) === 3 ? $parts[1] : null;
+        $cityName = $parts[0];
+        $stateName = 3 === count($parts) ? $parts[1] : null;
         $countryName = $parts[count($parts) - 1] ?? null;
 
         if (!$cityName || !$countryName) {
-            throw new InvalidArgumentException('Invalid location format: ' . $location);
+            throw new InvalidArgumentException('Invalid location format: '.$location);
         }
 
         $country = $this->handleCountry($countryName);
         $city = $this->handleCity($cityName, $country);
 
         $state = null;
-        if($stateName) {
+        if ($stateName) {
             $state = $this->handleState($stateName, $country);
         }
 
@@ -55,7 +55,7 @@ final readonly class LocationService
     {
         $city = $this->cityRepository->findOneBy(['name' => $cityName, 'country' => $country]);
 
-        if ($city === null) {
+        if (null === $city) {
             $city = new City();
             $city->setName($cityName);
             $city->setCountry($country);
@@ -65,11 +65,11 @@ final readonly class LocationService
         return $city;
     }
 
-    public function handleCountry($countryName): Country
+    public function handleCountry(string $countryName): Country
     {
         $country = $this->countryRepository->findOneBy(['name' => $countryName]);
 
-        if ($country === null) {
+        if (null === $country) {
             $country = new Country();
             $country->setName($countryName);
             $this->entityManager->persist($country);
@@ -82,7 +82,7 @@ final readonly class LocationService
     {
         $state = $this->stateRepository->findOneBy(['name' => $stateName, 'country' => $country]);
 
-        if($state === null) {
+        if (null === $state) {
             $state = new State();
             $state->setName($stateName);
             $state->setCountry($country);

@@ -6,7 +6,7 @@ namespace App\Controller;
 
 use App\Entity\Travel;
 use App\Form\TravelType;
-use App\Services\HandleTravelRequestService;
+use App\Services\TravelRequestCreationService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Attribute\Route;
 final class TravelController extends AbstractController
 {
     public function __construct(
-        private readonly HandleTravelRequestService $handleTravelRequestService,
+        private readonly TravelRequestCreationService $handleTravelRequestService,
     ) {}
 
     #[Route('/travel', name: 'travel')]
@@ -30,7 +30,7 @@ final class TravelController extends AbstractController
             $tripData['destinationCity'] = $form->get('destination')->getData();
             $tripData['tripDate'] = $form->get('tripDate')->getData();
 
-            $this->handleTravelRequestService->create($travel, $tripData);
+            $this->handleTravelRequestService->createTravelRequest($travel, $tripData);
         }
 
         return $this->render('travel/create.html.twig', [

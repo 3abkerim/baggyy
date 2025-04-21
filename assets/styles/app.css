@@ -30,10 +30,10 @@
 
 body {
     font-family: phudu, sans-serif;
-    background: #4C34E0;
+    background: #4c34e0;
 }
 nav {
-    background: #4C34E0;
+    background: #4c34e0;
 }
 
 @theme {
@@ -42,5 +42,5 @@ nav {
     --color-primary-hover: #1e40af;
     --color-secondary: white;
     --color-background-green: #36d9ad;
-    --color-baggyy-yellow: #F2FE00
+    --color-baggyy-yellow: #f2fe00;
 }

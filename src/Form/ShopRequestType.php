@@ -20,8 +20,7 @@ class ShopRequestType extends AbstractType
                 'mapped' => false,
                 'label_attr' => ['mb-1'],
                 'attr' => [
-                    'class' => 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5',
-                    'placeholder' => 'Product URL',
+                    'class' => 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 px-4 py-2.5 mt-6 md:mt-0',                    'placeholder' => 'Product URL',
                     'required' => true,
                 ],
             ])

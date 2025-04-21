@@ -9,8 +9,7 @@
         <div class="bg-secondary rounded-2xl border-2 border-black px-4 py-10">
             <div class="flex justify-center items-center">
                 <div class="w-full max-w-lg">
-                    {{ form_start(form, { attr: { class: 'w-full px-4 mt-6 md:mt-0' } }) }}
-
+                    {{ form_start(form) }}
                     <div class="mb-4">
                         {{ form_label(form.productUrl) }}
                         <div class="relative">
@@ -45,10 +44,10 @@
                     </div>
 
                     <div class="flex justify-center items-end mt-4">
-                        {{ buttons.BaggyyButton('Add Trip','submit') }}
+                        {{ buttons.BaggyyButton('Add Trip', 'submit') }}
                     </div>
 
-                    {{ form_end(form, { render_rest: false }) }}
+                    {{ form_end(form, {render_rest: false}) }}
                 </div>
             </div>
         </div>
