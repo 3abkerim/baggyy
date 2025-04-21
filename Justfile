@@ -58,17 +58,17 @@ fix-assets:
 
 # Twig Fixer
 fix-twig:
-    php vendor/friendsoftwig/twigcs/bin/twigcs templates/
+    vendor/bin/twig-cs-fixer lint --fix templates
 
 # -----------------
 # GLOBAL FIX (Calls all linters)
 # -----------------
 fix:
     just fix-php-cs
-    just fix-phpstan
     just fix-rector
-    just fix-twig
     just fix-assets
+    just fix-phpstan
+    just fix-twig
     just test
 
 # -----------------
